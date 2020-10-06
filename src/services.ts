@@ -2,7 +2,7 @@ import { WeatherData } from './types';
 import { parseResult } from './utils';
 import axios from 'axios';
 
-const apiKey = 'b6f5e71947c7dc1c21f3a0e950bd9d75';
+const apiKey = 'Your api key';
 
 export const getWeatherData = async (city: string): Promise<WeatherData> => {
   const weatherResult = await axios
