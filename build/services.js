@@ -12,28 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const path_1 = __importDefault(require("path"));
-const services_1 = require("./services");
+exports.getWeatherData = void 0;
 const utils_1 = require("./utils");
-const app = express_1.default();
-app.use(express_1.default.json());
-const PORT = 8000;
-app.use(express_1.default.static(__dirname + '/public'));
-app.get('', (_req, res) => {
-    res.sendFile(path_1.default.join(__dirname, '/public', 'index.html'));
-});
-app.get('/api/weather', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const city = utils_1.parseQuery(req.query.city);
-        const weatherData = yield services_1.getWeatherData(city);
-        console.log(weatherData);
-        res.json(weatherData);
-    }
-    catch (e) {
-        console.log(e);
-    }
-}));
-app.listen(PORT, () => {
-    console.log(`listening on port ${PORT}`);
+const axios_1 = __importDefault(require("axios"));
+const apiKey = '7f3111e225a2546fb119bd59d69c84ba';
+exports.getWeatherData = (city) => __awaiter(void 0, void 0, void 0, function* () {
+    const weatherResult = yield axios_1.default
+        .get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
+        .then((res) => res.data);
+    const weatherData = utils_1.parseResult(weatherResult);
+    return weatherData;
 });

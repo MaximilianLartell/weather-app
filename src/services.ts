@@ -1,8 +1,11 @@
 import { WeatherData } from './types';
 import { parseResult } from './utils';
 import axios from 'axios';
+import * as dotenv from 'dotenv';
 
-const apiKey = 'Your api key';
+dotenv.config();
+
+const apiKey = process.env.API;
 
 export const getWeatherData = async (city: string): Promise<WeatherData> => {
   const weatherResult = await axios
@@ -12,6 +15,5 @@ export const getWeatherData = async (city: string): Promise<WeatherData> => {
     .then((res) => res.data);
 
   const weatherData = parseResult(weatherResult);
-  console.log('hayabasi', weatherData);
   return weatherData;
 };
