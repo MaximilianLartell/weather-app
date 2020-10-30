@@ -44,12 +44,10 @@ form {
 
 h3 {
   font-size: 100px;
-  margin-top: 30px;
 }
 
 h4 {
   font-size: 40px;
-  margin-top: 10px;
 }
 
 .text-field {
@@ -63,6 +61,7 @@ h4 {
 
 .weather-container {
   text-align: center;
+  height: auto;
 }
 
 .submit-button {
@@ -78,9 +77,4 @@ h4 {
 .submit-button:hover {
   background-color: rgba(255, 255, 255, 0.7);
   transition: background-color 0.2s;
-}
-
-.city,
-.humidity {
-  margin-top: 20px;
 }
